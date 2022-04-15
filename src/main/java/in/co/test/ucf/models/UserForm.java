@@ -2,21 +2,26 @@ package in.co.test.ucf.models;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
-import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EntityListeners;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
 import org.hibernate.annotations.GenericGenerator;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 @Entity
+@Table(name = "USER_FORM")
+@EntityListeners(AuditingEntityListener.class)
 public class UserForm implements Serializable {
 	private static final long serialVersionUID = 876563294576L;
 
@@ -35,6 +40,7 @@ public class UserForm implements Serializable {
 
 	@Column
 	@NotBlank
+	@Email
 	private String email;
 
 	@Column
@@ -50,13 +56,29 @@ public class UserForm implements Serializable {
 
 	@Column
 	@NotBlank
+	@Size(min = 8, message = "Provide list of valid IP(s) seperated by comma (,).")
 	private String systemIPsAsString;
 
+	@Column
+	private String createdBy;
+
+	@Column
+	// @NotBlank
+	private String approver;
+
+	@Column
+	private String status;
+
+	@Column
 	@CreatedDate
 	private LocalDateTime createdOn;
 
+	@Column
 	@LastModifiedDate
 	private LocalDateTime lastModifiedOn;
+
+	@Column
+	private LocalDateTime lastStatusChangedOn;
 
 	public String getFirstName() {
 		return firstName;
@@ -98,15 +120,37 @@ public class UserForm implements Serializable {
 		this.userName = userName;
 	}
 
-	/*
-	public List<String> getSystemIPs() {
-		return systemIPs;
+	public String getSystemIPsAsString() {
+		return systemIPsAsString;
 	}
 
-	public void setSystemIPs(final List<String> systemIPs) {
-		this.systemIPs = systemIPs;
+	public void setSystemIPsAsString(final String systemIPsAsString) {
+		this.systemIPsAsString = systemIPsAsString;
 	}
-	*/
+
+	public String getCreatedBy() {
+		return createdBy;
+	}
+
+	public void setCreatedBy(final String createdBy) {
+		this.createdBy = createdBy;
+	}
+
+	public String getApprover() {
+		return approver;
+	}
+
+	public void setApprover(final String approver) {
+		this.approver = approver;
+	}
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(final String status) {
+		this.status = status;
+	}
 
 	public LocalDateTime getCreatedOn() {
 		return createdOn;
@@ -124,23 +168,24 @@ public class UserForm implements Serializable {
 		this.lastModifiedOn = lastModifiedOn;
 	}
 
+	public LocalDateTime getLastStatusChangedOn() {
+		return lastStatusChangedOn;
+	}
+
+	public void setLastStatusChangedOn(final LocalDateTime lastStatusChangedOn) {
+		this.lastStatusChangedOn = lastStatusChangedOn;
+	}
+
 	public int getId() {
 		return id;
 	}
 
-	public String getSystemIPsAsString() {
-		return systemIPsAsString;
-	}
-
-	public void setSystemIPsAsString(final String systemIPsAsString) {
-		this.systemIPsAsString = systemIPsAsString;
-	}
-
 	@Override
 	public String toString() {
-		return "UserForm [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", email=" + email
-				+ ", organisation=" + organisation + ", userName=" + userName + ", systemIPsAsString=" + systemIPsAsString
-				+ ", createdOn=" + createdOn + ", lastModifiedOn=" + lastModifiedOn + "]";
+		return "UserForm [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", email=" + email + ", organisation=" + organisation
+				+ ", userName=" + userName + ", systemIPsAsString=" + systemIPsAsString + ", createdBy=" + createdBy + ", approver=" + approver
+				+ ", status=" + status + ", createdOn=" + createdOn + ", lastModifiedOn=" + lastModifiedOn + ", lastStatusChangedOn="
+				+ lastStatusChangedOn + "]";
 	}
 
 }

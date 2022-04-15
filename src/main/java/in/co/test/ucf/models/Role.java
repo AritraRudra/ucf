@@ -1,8 +1,10 @@
 package in.co.test.ucf.models;
 
+import in.co.test.ucf.constants.Constants;
+
 public enum Role {
 
-	ADMIN("ADMIN"), MAKER("MAKER"), CHECKER("CHECKER");
+	ADMIN(Constants.ROLE_ADMIN), CHECKER(Constants.ROLE_CHECKER), MAKER(Constants.ROLE_MAKER);
 
 	private final String value;
 

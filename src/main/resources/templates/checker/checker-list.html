@@ -1,0 +1,50 @@
+<div class="table-responsive">
+    <table class="table table-bordered table-hover table-striped" id="pendingFormsList" style="width: 100rem;">
+        <thead class="thead-light">
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">First</th>
+            <th scope="col">Last</th>
+            <th scope="col">Username</th>
+            <th scope="col">E-mail</th>
+			<th scope="col">Organisation</th>
+            <th scope="col">Created On</th>
+            <th scope="col">Last Modified On</th>
+            <th scope="col">Action</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="form: ${pendingFormsList}">
+            <td th:text="${form.id}"></td>
+            <td th:text="${form.firstName}"></td>
+            <td th:text="${form.lastName}"></td>
+            <td th:text="${form.userName}"></td>
+            <td th:text="${form.email}"></td>
+			<td th:text="${form.organisation}"></td>
+            <td th:text="${form.createdOn}"></td>
+            <td th:text="${form.lastModifiedOn}"></td>
+            <td>
+				<span th:if="${#authorization.expression('hasRole(''ROLE_CHECKER'')')}">
+					<a href="#" th:href="@{'/editform/'+ ${form.id}}"><i class="fas fa-edit"></i></a>
+				</span>
+                <span th:if="${#authorization.expression('hasRole(''ROLE_CHECKER'')')}">
+					| <a href="#" th:onclick="'javascript:confirmDelete(\''+ ${form.id} +'\');'"><i class="fas fa-user-times"></i></a>
+				</span>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <div class="alert alert-danger text-center" th:if="${listErrorMessage}" th:text="${listErrorMessage}">Error Message</div>
+</div>
+
+<script type="text/javascript">
+    function confirmDelete(id) {
+        $('#deleteModal').modal('show');
+        $("#userIdHiddenInput").val(id);
+    }
+
+    function deleteForm() {
+        var id = $("#userIdHiddenInput").val();
+        window.location = "deleteform/" + id;
+    }
+</script>

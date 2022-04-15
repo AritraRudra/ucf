@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>User Information and Form</title>
+
+    <!--JQUERY-->
+    <script
+            crossorigin="anonymous"
+            integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+            src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          rel="stylesheet">
+    <script
+            src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script
+            crossorigin="anonymous" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+            src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+
+    <!-- Fontawesome Solid Icons-->
+    <link href="https://use.fontawesome.com/releases/v5.0.8/css/solid.css"
+          rel="stylesheet">
+    <script src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
+
+    <!-- Our css-->
+    <link rel="stylesheet" th:href="@{/css/user-form.css}"
+          type="text/css">
+
+    <!-- DATA TABLE -->
+    <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.1/css/bootstrap.css" rel="stylesheet">
+    <link href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css" rel="stylesheet">
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            // Make sure that the id you gave to the table is equal to the text after the # symbol
+            $('#appliedFormsList').DataTable();
+        });
+    </script>
+</head>
+<body>
+<div class="container">
+	<!-- <div aria-labelledby="form-tab" class="tab-pane fade show" id="form" role="tabpanel" th:classappend="${formTab}"> -->
+	<div aria-labelledby="form-tab" class="tab-pane fade show" id="form" role="tabpanel">
+		<div class="card">
+			<div class="card-header">
+                <h4>User Information</h4>
+            </div>
+			<div class="card-body">				
+				<div>
+					<form autocomplete="off" class="form" method="get" role="form" action="@{/verifyroleandforward}" th:object="${userForm}">
+						<!-- It is necessary to pass the validation of the Model -->
+						<input class="form-control" th:field="${userForm.id}" type=hidden readonly="readonly">
+
+						<div class="form-group row">
+							<label class="col-lg-3 col-form-label form-control-label">First name</label>
+							<div class="col-lg-9">
+								<input class="form-control" th:field="${userForm.firstName}" type="text" readonly="readonly">
+							</div>
+						</div>
+						<div class="form-group row">
+							<label class="col-lg-3 col-form-label form-control-label">Last name</label>
+							<div class="col-lg-9">
+								<input class="form-control" th:field="${userForm.lastName}" type="text" readonly="readonly">
+							</div>
+						</div>
+						<div class="form-group row">
+							<label class="col-lg-3 col-form-label form-control-label">Email</label>
+							<div class="col-lg-9">
+								<input class="form-control" th:field="${userForm.email}" type="email" readonly="readonly">
+						</div>
+						<div class="form-group row">
+							<label class="col-lg-3 col-form-label form-control-label">Organisation</label>
+							<div class="col-lg-9">
+								<input class="form-control" th:field="${userForm.organisation}" type="text" readonly="readonly">
+						</div>
+
+						<div class="form-group row">
+							<label class="col-lg-3 col-form-label form-control-label">Username</label>
+							<div class="col-lg-9">
+								<input class="form-control" th:field="${userForm.userName}" type="text" readonly="readonly">
+							</div>
+						</div>
+
+						<div class="form-group row">
+							<label class="col-lg-3 col-form-label form-control-label">System IPs</label>
+							<div class="col-lg-9">
+								<input class="form-control" th:field="${userForm.systemIPsAsString}" type="text" readonly="readonly">
+							</div>
+						</div>
+
+						<div class="form-group row">
+							<label class="col-lg-3 col-form-label form-control-label">Approver</label>
+							<div class="col-lg-9">
+								<input class="form-control" th:field="${userForm.approver}" type="text" readonly="readonly">
+							</div>
+						</div>
+
+						<div class="form-group row">
+							<label class="col-lg-3 col-form-label form-control-label">Status</label>
+							<div class="col-lg-9">
+								<input class="form-control" th:field="${userForm.status}" type="text" readonly="readonly">
+							</div>
+						</div>
+
+						<div class="form-group row">
+							<div class="col-lg-12 text-center">
+								<input class="btn btn-primary" type="submit" th:href="@{'/verifyroleandforward'}" value="OK">
+							</div>
+						</div>
+						<div class="alert alert-danger text-center" th:if="${formErrorMessage}" th:text="${formErrorMessage}">Error Message</div>
+						<div class="alert alert-success text-center d-none" id="formSuccess" th:if="${updateForm}">Success Message</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+</body>
+</html>

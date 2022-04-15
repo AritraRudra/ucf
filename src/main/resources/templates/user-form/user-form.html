@@ -1,7 +1,6 @@
 <div th:with="disableFields=!${updateForm} and ${#authorization.expression('hasRole(''ROLE_MAKER'')')}">
 
-    <form autocomplete="off" class="form" method="post" role="form"
-          th:action="${createform}?@{/createform}:(${updateForm} ?@{/editUser} :@{/userform})" th:object="${userForm}">
+    <form autocomplete="off" class="form" method="post" role="form" th:action="${createForm}?@{/createform}:@{/userform}" th:object="${userForm}">
         <!-- It is necessary to pass the validation of the Model -->
         <input class="form-control" th:field="${userForm.id}" th:if="${updateForm}" type=hidden>
         <input class="form-control" name="password" th:if="${updateForm}" type=hidden value="xxxx">
@@ -11,10 +10,8 @@
             <label class="col-lg-3 col-form-label form-control-label">First name</label>
             <div class="col-lg-9">
                 <input class="form-control" th:disabled="${disableFields}" th:field="${userForm.firstName}" type="text">
-                <div class="alert-danger" th:errors="*{firstName}" th:if="${#fields.hasErrors('firstName')}">Name
-                    Error
+                <div class="alert-danger" th:errors="*{firstName}" th:if="${#fields.hasErrors('firstName')}">Name Error
                 </div>
-
             </div>
         </div>
         <div class="form-group row">
@@ -55,8 +52,8 @@
 
         <div class="form-group row">
             <div class="col-lg-12 text-center">
-                <a class="btn btn-secondary" th:href="@{'/userForm/cancel'}">Cancel</a>
-                <input class="btn btn-primary" th:value="${updateForm}?'Save User':'Submit User Creation Form'" type="submit" value="Save Changes">
+                <a class="btn btn-secondary" th:href="@{'/userform/cancel'}">Cancel</a>
+                <input class="btn btn-primary" th:value="${createForm}?'Save User':'Submit User Creation Form'" type="submit" value="Save Changes">
             </div>
         </div>
         <div class="alert alert-danger text-center" th:if="${formErrorMessage}" th:text="${formErrorMessage}">Error
