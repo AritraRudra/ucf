@@ -1,6 +1,6 @@
 package in.co.test.ucf.models;
 
-import in.co.test.ucf.constants.Constants;
+import in.co.test.ucf.utils.Constants;
 
 public enum Role {
 

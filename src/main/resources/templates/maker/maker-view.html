@@ -40,7 +40,7 @@
 </head>
 <body>
 <div class="container">
-    <div class="mx-auto col-sm-8 main-section" id="myTab" role="tablist">
+    <div class="mx-auto col-md-16 main-section" id="myTab" role="tablist">
         <ul class="nav nav-tabs justify-content-end">
             <li class="nav-item">
                 <a aria-controls="list" aria-selected="false" class="nav-link " data-toggle="tab" href="#list"
@@ -75,7 +75,7 @@
                     <div class="card-body">
                         <!-- <div th:include="maker/maker-form.html" th:remove="tag"></div> -->
                         <div>
-						    <a th:href="@{getucf}">Request new User Creation</a>
+						    <a th:href="@{getucf}">Request for new User Creation</a>
                         </div>
                     </div>
                 </div>
@@ -83,6 +83,6 @@
         </div>
     </div>
 </div>
-<div th:include="maker/confirm-delete-dialog.html" th:remove="tag"></div>
+<div th:include="maker/confirm-delete-dialog-modal.html" th:remove="tag"></div>
 </body>
 </html>

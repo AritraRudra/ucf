@@ -35,7 +35,7 @@
     <script type="text/javascript">
         $(document).ready(function () {
             // Make sure that the id you gave to the table is equal to the text after the # symbol
-            $('#appliedFormsList').DataTable();
+            $('#userForm').DataTable();
         });
     </script>
 </head>
@@ -93,7 +93,7 @@
 						<div class="form-group row">
 							<label class="col-lg-3 col-form-label form-control-label">Approver</label>
 							<div class="col-lg-9">
-								<input class="form-control" th:field="${userForm.approver}" type="text" readonly="readonly">
+								<input class="form-control" th:field="${userForm.checker}" type="text" readonly="readonly">
 							</div>
 						</div>
 

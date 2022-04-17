@@ -8,27 +8,37 @@
             <th scope="col">Username</th>
             <th scope="col">E-mail</th>
 			<th scope="col">Organisation</th>
+            <th scope="col">Status</th>
+            <th scope="col">Created By</th>
             <th scope="col">Created On</th>
+            <th scope="col">Approver</th>
+            <th scope="col">Last Status Updated On</th>
             <th scope="col">Last Modified On</th>
-            <th scope="col">Action</th>
+            <th scope="col">Actions</th>
         </tr>
         </thead>
         <tbody>
-        <tr th:each="form: ${appliedFormsList}">
+        <tr th:each="form: ${appliedFormsList}"
+            th:style="${form.status == 'PENDING'} ? 'background-color: darkorange;' : (${form.status == 'IN_REVIEW'} ? 'background-color: aquamarine;' : (${form.status == 'RESUBMITTED'} ? 'background-color: lightcoral;'
+                    : (${form.status == 'APPROVED'} ? 'background-color: limegreen;' :  (${form.status == 'REJECTED'} ? 'background-color: orangered' : (${form.status == 'REVIEWED_UPDATE_REQUIRED'} ? 'background-color: gold' : 'background-color: white;'))))) ">
             <td th:text="${form.id}"></td>
             <td th:text="${form.firstName}"></td>
             <td th:text="${form.lastName}"></td>
             <td th:text="${form.userName}"></td>
             <td th:text="${form.email}"></td>
 			<td th:text="${form.organisation}"></td>
+            <td th:text="${form.status}"></td>
+            <td th:text="${form.createdBy}"></td>
             <td th:text="${form.createdOn}"></td>
+            <td th:text="${form.checker}"></td>
+            <td th:text="${form.lastStatusChangedOn}"></td>
             <td th:text="${form.lastModifiedOn}"></td>
             <td>
 				<span th:if="${#authorization.expression('hasRole(''ROLE_MAKER'')')} and ${#httpServletRequest.remoteUser==form.createdBy}">
-					<a href="#" th:href="@{'/editform/'+ ${form.id}}"><i class="fas fa-edit"></i></a>
+					<a href="#" title="Edit" data-toggle="tooltip" th:href="@{'/editform/'+ ${form.id}}"><i class="fas fa-edit"></i></a>
 				</span>
                 <span th:if="${#authorization.expression('hasRole(''ROLE_MAKER'')')} and ${#httpServletRequest.remoteUser==form.createdBy}">
-					| <a href="#" th:onclick="'javascript:confirmDeleteUcf(\''+ ${form.id} +'\');'"><i class="fas fa-user-times"></i></a>
+					| <a href="#" title="Delete" data-toggle="tooltip" th:onclick="'javascript:confirmDeleteUcf(\''+ ${form.id} +'\');'"><i class="fas fa-user-times"></i></a>
 				</span>
             </td>
         </tr>

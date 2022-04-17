@@ -35,21 +35,30 @@
     <script type="text/javascript">
         $(document).ready(function () {
             // Make sure that the id you gave to the table is equal to the text after the # symbol
-            $('#pendingFormsList').DataTable();
+            $('#formsList').DataTable();
         });
     </script>
 </head>
 <body>
 <div class="container">
-    <div class="mx-auto col-sm-8 main-section" id="myTab" role="tablist">
+    <div class="mx-auto col-md-16 main-section" id="myTab" role="tablist">
         <ul class="nav nav-tabs justify-content-end">
             <li class="nav-item">
-                <a aria-controls="list" aria-selected="false" class="nav-link " data-toggle="tab" href="#list"
-                   id="list-tab" role="tab" th:classappend="${listTab}">List</a>
+                <a class="nav-link" title="View all UCFs with current user" data-toggle="tooltip"><span>
+                   <form autocomplete="off" action="/viewallwithChecker" method="post">
+                    <input type="hidden" th:value="${#authentication.getPrincipal().getUsername()}" name="user_name" />
+                    <input type="submit" name="submit" value="All UCFs" />
+                   </form>
+                </span>
+                </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#" th:href="@{/logout}"><span
-                        th:text="${#authentication.getPrincipal().getUsername()}"></span> - <span>logout</span><span
+                <a class="nav-link" href="#" th:href="@{/export}">
+                    <span><i class="fas fa-file-excel"></i></span> - <span>Export to Excel</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#" th:href="@{/logout}" title="Logout" data-toggle="tooltip"><span
+                        th:text="${#authentication.getPrincipal().getUsername()}"></span>   <span
                         class="float-right"><i class="fas fa-sign-out-alt"></i></span></a>
             </li>
         </ul>
@@ -57,7 +66,7 @@
             <div aria-labelledby="list-tab" class="tab-pane fade show" id="list" role="tabpanel" th:classappend="${listTab}">
                 <div class="card">
                     <div class="card-header">
-                        <h4>Pending Requests</h4>
+                        <h4>Requested UCFs</h4>
                     </div>
                     <div class="card-body">
                         <div th:include="checker/checker-list.html" th:remove="tag"></div>
@@ -68,6 +77,6 @@
     </div>
 </div>
 <div th:if="${editMode}" th:include="user-form/change-password.html" th:remove="tag"></div>
-<div th:include="user-form/confirm-delete-dialog.html" th:remove="tag"></div>
+<div th:include="checker/confirm-reject-dialog-modal.html" th:remove="tag"></div>
 </body>
 </html>

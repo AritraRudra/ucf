@@ -10,8 +10,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 
-import in.co.test.ucf.constants.Constants;
-import in.co.test.ucf.models.Role;
+import in.co.test.ucf.utils.Constants;
 
 @Configuration
 @EnableWebSecurity
@@ -38,23 +37,23 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	protected void configure(final HttpSecurity http) throws Exception {
 		LOGGER.info("In WebSecurityConfig.configure()");
 		http
-			.authorizeRequests()
-			.antMatchers(resources).permitAll()
-			.antMatchers("/", "/index").permitAll()
-			.anyRequest().authenticated()
-			.and()
-			.formLogin()
-			.loginPage("/login")
-			.permitAll()
-			.defaultSuccessUrl(Constants.VERIFY_ROLE_AND_FORWARD)
-			.failureUrl("/login?error=true")
-			.usernameParameter("userName")
-			.passwordParameter("password")
-			.and()
-			.csrf().disable()
-			.logout()
-			.permitAll()
-			.logoutSuccessUrl("/login?logout");
+		.authorizeRequests()
+		.antMatchers(resources).permitAll()
+		.antMatchers("/", "/index").permitAll()
+		.anyRequest().authenticated()
+		.and()
+		.formLogin()
+		.loginPage("/login")
+		.permitAll()
+		.defaultSuccessUrl(Constants.VERIFY_ROLE_AND_FORWARD)
+		.failureUrl("/login?error=true")
+		.usernameParameter("userName")
+		.passwordParameter("password")
+		.and()
+		.csrf().disable()
+		.logout()
+		.permitAll()
+		.logoutSuccessUrl("/login?logout");
 
 		// For h2-console
 		http.headers().frameOptions().disable();

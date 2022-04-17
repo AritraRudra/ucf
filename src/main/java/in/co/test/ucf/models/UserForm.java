@@ -19,8 +19,10 @@ import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
+import in.co.test.ucf.utils.Constants;
+
 @Entity
-@Table(name = "USER_FORM")
+@Table(name = Constants.TABLE_USER_FORM)
 @EntityListeners(AuditingEntityListener.class)
 public class UserForm implements Serializable {
 	private static final long serialVersionUID = 876563294576L;
@@ -64,7 +66,7 @@ public class UserForm implements Serializable {
 
 	@Column
 	// @NotBlank
-	private String approver;
+	private String checker;
 
 	@Column
 	private String status;
@@ -136,12 +138,12 @@ public class UserForm implements Serializable {
 		this.createdBy = createdBy;
 	}
 
-	public String getApprover() {
-		return approver;
+	public String getChecker() {
+		return checker;
 	}
 
-	public void setApprover(final String approver) {
-		this.approver = approver;
+	public void setChecker(final String checker) {
+		this.checker = checker;
 	}
 
 	public String getStatus() {
@@ -183,7 +185,7 @@ public class UserForm implements Serializable {
 	@Override
 	public String toString() {
 		return "UserForm [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", email=" + email + ", organisation=" + organisation
-				+ ", userName=" + userName + ", systemIPsAsString=" + systemIPsAsString + ", createdBy=" + createdBy + ", approver=" + approver
+				+ ", userName=" + userName + ", systemIPsAsString=" + systemIPsAsString + ", createdBy=" + createdBy + ", approver=" + checker
 				+ ", status=" + status + ", createdOn=" + createdOn + ", lastModifiedOn=" + lastModifiedOn + ", lastStatusChangedOn="
 				+ lastStatusChangedOn + "]";
 	}
