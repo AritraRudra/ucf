@@ -1,0 +1,73 @@
+<div>
+    <form autocomplete="off" class="form" method="post" role="form" th:action="@{/signup}" th:object="${userSignupForm}">
+        <!-- It is necessary to pass the validation of the Model -->
+
+        <div class="form-group row">
+            <label class="col-lg-3 col-form-label form-control-label">First Name</label>
+            <div class="col-lg-9">
+                <input class="form-control" th:field="${userSignupForm.firstName}" type="text">
+                <div class="alert-danger" th:errors="*{firstName}" th:if="${#fields.hasErrors('firstName')}">Name Error</div>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-lg-3 col-form-label form-control-label">Last Name</label>
+            <div class="col-lg-9">
+                <input class="form-control" th:field="${userSignupForm.lastName}" type="text">
+                <div class="alert-danger" th:errors="*{lastName}" th:if="${#fields.hasErrors('lastName')}">Name Error</div>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-lg-3 col-form-label form-control-label">EMail</label>
+            <div class="col-lg-9">
+                <input class="form-control" th:field="${userSignupForm.email}" type="email">
+                <div class="alert-danger" th:errors="*{email}" th:if="${#fields.hasErrors('email')}">EMail Error</div>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-lg-3 col-form-label form-control-label">User Name</label>
+            <div class="col-lg-9">
+                <input class="form-control" th:field="${userSignupForm.userName}" type="text">
+                <div class="alert-danger" th:errors="*{username}" th:if="${#fields.hasErrors('userName')}">User name Error</div>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-lg-3 col-form-label form-control-label" th:text="Roles"></label>
+            <div class="col-lg-9">
+                <!--
+                <select class="form-control" th:field="${userSignupForm.roles}">
+                    <option th:each="role :${roles}" th:text="${role.name}" th:value="${role}">Role Name</option>
+                </select>
+                -->
+
+                <label class="form-control" th:field="${userSignupForm.roles}">
+                    <input type="checkbox" name="roles" th:each="role :${roles}" th:text="${role.name}" th:value="${role}" th:checked="${role}">
+                </label>
+
+                <!-- <div class="alert-danger" th:errors="*{roles}" th:if="${#fields.hasErrors('roles')}">Role Error</div> --> 
+            </div>
+        </div>
+
+        <div class="form-group row" th:if="${editMode==null or editMode==false}">
+            <label class="col-lg-3 col-form-label form-control-label">Password</label>
+            <div class="col-lg-9">
+                <input class="form-control" th:field="${userSignupForm.password}" type="password">
+                <div class="alert-danger" th:errors="*{password}" th:if="${#fields.hasErrors('password')}">Password Error</div>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-lg-3 col-form-label form-control-label">Confirm Password</label>
+            <div class="col-lg-9">
+                <input class="form-control" th:field="${userSignupForm.confirmPassword}" type="password">
+                <div class="alert-danger" th:errors="*{confirmPassword}" th:if="${#fields.hasErrors('confirmPassword')}">Password Error</div>
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-lg-12 text-center">
+                <a class="btn btn-secondary" th:href="@{'/userSignupForm/cancel'}">Cancel</a>
+                <input class="btn btn-primary" type="submit" value="Create User">
+            </div>
+        </div>
+        <div class="alert alert-danger text-center" th:if="${formErrorMessage}" th:text="${formErrorMessage}">Error Message</div>
+        <div class="alert alert-success text-center d-none" id="formSuccess" th:if="${editMode}">Success Message</div>
+    </form>
+</div>

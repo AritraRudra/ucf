@@ -5,6 +5,7 @@ import java.time.format.DateTimeFormatter;
 public interface Constants {
 	// Tables
 	public static final String TABLE_USER_FORM = "UserForm";
+	public static final String TABLE_USER = "User";
 
 	// Date related
 	public static final String TIME_ZONE_IST = "Asia/Kolkata";

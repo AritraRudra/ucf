@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <!-- 
+        <style>
+            fieldset { width: 976px; padding: 1%; }
+            input[type=text], select, textarea { width: 98%; }
+            .half { float: left; width: 48%; padding: 1%; }
+            .full { clear: both; width: 98%; padding: 1%; }
+            .right { text-align: right; }
+        </style>
+        -->
+    </head>
+    <body>
+        <form>
+
+        <fieldset>
+            <legend>Contact form</legend>
+                <div class="half">
+                    <label for="name">Name</label>
+                    <input type="text" id="name" name="name">
+                </div>
+                <div class="half">
+                    <label for="email">Email</label>
+                    <input type="text" id="email" name="email">
+                </div>
+                <div class="half">
+                    <label for="zip">Zip / Postal code</label>
+                    <input type="text" id="zip" name="zip">
+                </div>
+                <div class="half">
+                    <label for="country">Country</label>
+                    <select id="country" name="country"><option></option></select>
+                </div>
+                <div class="full">
+                    <label for="message">Message</label>
+                    <textarea id="message" name="message"></textarea>
+                </div>
+                <div class="half">
+                    <input type="checkbox" id="copy" name="copy">
+                    <label for="copy">Send me a copy</label>
+                </div>
+                <div class="half right">
+                    <input type="submit" value="send">
+                </div>
+                  
+        </fieldset>
+    </form>
+    <div class="container">
+        <form>
+            
+            <fieldset class="border p-2">
+                <legend class="float-none w-auto p-2">Contact form</legend>
+            <div class="row">
+                <div class="col-6"><!--left side -->
+                    <div class="form-group row">
+                        <label for="fname" class="col-sm-6 col-form-label">First Name:</label>
+                        <div class="col-sm-6">
+                            <input type="text" class="form-control" id="fname">
+                        </div>
+                    </div>
+    
+                    <div class="form-group row">
+                        <label for="lname" class="col-sm-6 col-form-label">Last Name:</label>
+                        <div class="col-sm-6">
+                            <input type="text" class="form-control" id="lname">
+                        </div>
+                    </div>
+    
+                    <div class="form-group row">
+                        <label for="lname" class="col-sm-6 col-form-label">Date of Birth:</label>
+                        <div class="col-sm-6">
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <select name="Month" class="custom-select" class="month/year">
+                                        <option value="january">January</option>
+                                        <option value="february">February</option>
+                                        <option value="march">March</option>
+                                        <option value="april">April</option>
+                                        <option value="may">May</option>
+                                        <option value="june">June</option>
+                                        <option value="july">July</option>
+                                        <option value="august">August</option>
+                                        <option value="september">September</option>
+                                        <option value="october">October</option>
+                                        <option value="november">November</option>
+                                        <option value="december">December</option>
+                                    </select>
+                                </div>
+    
+                                <div class="col-sm-6">
+                                    <select name="Year" class="custom-select" class="month/year">
+                                        <option value="2018">2018</option>
+                                        <option value="2017">2017</option> 
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+    
+                    <div class="form-group row">
+                        <label for="lname" class="col-sm-6 col-form-label">Gender:</label>
+                        <div class="col-sm-6">
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="gender" id="gridRadios1" value="male" checked>
+                                        <label class="form-check-label" for="gridRadios1">
+                                            Male
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="gender" id="gridRadios2" value="female">
+                                        <label class="form-check-label" for="gridRadios2">
+                                            Female
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+    
+                    <div class="form-group row">
+                        <label for="lname" class="col-sm-6 col-form-label">Field of Study:</label>
+                        <div class="col-sm-6">
+                            <select name="Month" class="custom-select" class="month/year">
+                                <option value=""></option>  
+                            </select>
+                        </div>
+                    </div>
+                </div>
+    
+                <div class="col-6">
+                    <div class="form-group row">
+                        <label for="email" class="col-sm-6 col-form-label">Email Address</label>
+                        <div class="col-sm-6">
+                            <input type="text" class="form-control" id="email" value="email@example.com">
+                        </div>
+                    </div>
+    
+                    <div class="form-group row">
+                        <label for="password" class="col-sm-6 col-form-label">Password</label>
+                        <div class="col-sm-6">
+                            <input type="password" class="form-control" id="password" value="">
+                        </div>
+                    </div>
+    
+                    <div class="form-group row">
+                        <label for="password2" class="col-sm-6 col-form-label">Password</label>
+                        <div class="col-sm-6">
+                            <input type="password" class="form-control" id="password2" value="">
+                        </div>
+                    </div>
+    
+                </div><!--right side -->
+            </div><!-- form for teacher/student-->
+            </fieldset>
+        </form> 
+    </div>
+    
+    
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet"/>
+    </body>
+</html>

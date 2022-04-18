@@ -36,6 +36,7 @@
             </form>
             <div class="col-12 forgot">
                 <p><a href="#">Forgot password?</a></p>
+                <p><a href="#" th:href="@{/signup}">New User? Register Here</a>
             </div>
             <div class="alert alert-danger" role="alert" th:if="${param.error}">
                 Invalid username and password.
